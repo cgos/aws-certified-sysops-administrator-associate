@@ -4,6 +4,15 @@
  - Shutdown behavior and termination protection
  - Troubleshoot launch issues
  - Troubleshoot ssh issues
+ - Instances launch types
+ - Spot instances & spot fleet
+ - Instance launch types 
+ - Instance type deep dive
+ - AMIs
+   - Cross account copy
+ - Elastic IP
+ - CloudWatch metrics 
+
 
 ## EC2 Placement groups
 ### Cluster 
@@ -22,14 +31,6 @@ Grouping of instances within a single Availability Zone. cluster placement group
 ### Partition
 Reduce the likelihood of correlated hardware failures. used to deploy large distributed and replicated workloads, such as HDFS, HBase, and Cassandra
 
-**Pro**
-- 
-  
-**Cons**
-- 
-
-**Use Case**
-- 
 
 ### Spread
 Recommended for applications that have a small number of critical instances that should be kept separate from each other. 
@@ -45,3 +46,8 @@ Recommended for applications that have a small number of critical instances that
 **Use Case**
 - App that needs high availability
 - Critical app where each must be isolated
+
+
+## EC2 Shutdown behavior and Termination Protection
+
+## EC2 Troubleshoot launch issues
