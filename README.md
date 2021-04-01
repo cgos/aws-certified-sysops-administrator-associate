@@ -14,7 +14,7 @@
  - CloudWatch metrics 
 
 
-## EC2 Placement groups
+## EC2 Placement Groups
 ### Cluster 
 Grouping of instances within a single Availability Zone. cluster placement group enjoy a higher per-flow throughput limit
 
@@ -48,12 +48,12 @@ Recommended for applications that have a small number of critical instances that
 - Critical app where each must be isolated
 
 
-## EC2 Shutdown behavior and Termination Protection
+## EC2 Shutdown Behavior and Termination Protection
 CLI Attribute called: InstanceInitiatedShutdownBehavior
 
 
 
-## EC2 Troubleshoot launch issues
+## EC2 Troubleshoot Launch Issues
 Error:
 - InstanceLimitExceeded: you reached the max number of instances per region.
   - Resolution: Launch the instance in a different region or request AWS to increase your limit for this this region
@@ -65,12 +65,41 @@ Error:
   - Root EBS is encrypted and you do not have permission to access the KMS
   - Required part from the AMI is missing
 
-## EC2 SSH trouble
+## EC2 SSH Trouble
 - Make sure the private key file (pem) has the right permission
 - Make sure the username is given correctly. It has to be (note: ec2-user):
 ```ssh ec2-user@34.222.22.222 -i whatever.pem``` 
 
-
 Possible reasons for connection timeout:
 - SecurityGroup not configured correctly
 - CPU load of the instance is too high
+
+## EC2 Launch Types
+- On demande instances: short workload and predictable pricing
+- Reserved: for minimum 1 year: 
+  - Reserved instances: long workload: **75% discount**
+  - Convertible reserved instances: flexible instances: **54% discount**
+  - Scheduled reserved instances: based on schedule: 
+- Spot instances: short workload and cheap but less reliable: **90% discount**
+- Dedicated instances: no other customers will share your hardware
+- Dedicated hosts: book an entire physical server. Great for licences purposes
+
+**Great Combo**: Reserved instances for baseline + On-Demand/Spot for peaks
+
+**EC2 Spot Instances**
+2 Strategies:
+1. Max spot price
+2. Spot block: block for a specified time frame
+
+To terminate spot instances: first you need to cancel the spot request and then termine the running spot instances.
+
+**EC2 Spot Fleets**
+The ultimate way to save money.
+
+**EC2 Instance Types**
+R: app that needs RAM - in-memory cache
+C: app that needs CPU - compute/databases
+M: MEDIUM: cpu/ram - web app
+I: I/O - databases
+G: GPU - machine learning/video rendering
+T2/T3: burstable
