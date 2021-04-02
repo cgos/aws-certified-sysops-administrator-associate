@@ -55,11 +55,11 @@ CLI Attribute called: InstanceInitiatedShutdownBehavior
 
 ## EC2 Troubleshoot Launch Issues
 Error:
-- InstanceLimitExceeded: you reached the max number of instances per region.
+- **InstanceLimitExceeded**: you reached the max number of instances per region.
   - Resolution: Launch the instance in a different region or request AWS to increase your limit for this this region
-- InsufficientInstanceCapacity: not enough On-Demand capacity for this AZ
+- **InsufficientInstanceCapacity**: not enough On-Demand capacity for this AZ
   - Resolution: wait a few minutes or send request individually instead of in bulk
-- Instance terminates immediately (from pending to terminated), To find the exact reason checkout the EC2 Desciption tab next to the State Transition reason.Problem might be:
+- **Instance terminates immediately** (from pending to terminated), To find the exact reason checkout the EC2 Desciption tab next to the State Transition reason.Problem might be:
   - EBS volume limit reached
   - EBS snapshot is corrupt
   - Root EBS is encrypted and you do not have permission to access the KMS
@@ -103,3 +103,39 @@ M: MEDIUM: cpu/ram - web app
 I: I/O - databases
 G: GPU - machine learning/video rendering
 T2/T3: burstable
+
+## EC2 AMI
+**Cross Account AMI Copy**
+- if you copy an AMI that has been shared with your account, you are the owner of the target AMI in your account.
+- To copy an AMI that was shared with you from another account, the owner of the source AMI must grant read permission for the storage that backs the AMI.
+- you can't copy an encrypted AMI that was shared with you from another account.
+- you can't copy an AMI with an associated billingProduct code that was shared with you from another account.
+
+https://aws.amazon.com/premiumsupport/knowledge-center/copy-ami-region/
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html
+
+## Elastic IPs
+- When you stop/start an EC2 instance, the public IP will change
+- To have a fixed public IP, you need an Elastic IP
+- you can attach it to one instance at a time
+- you don't pay if the elastic IP is attached to a server
+- you can only have 5 elastic IPs per account
+- try to avoid avoid using elastic IP
+  - use DNS
+  - use ELB
+
+ ## CloudWatch metrics for EC2
+ AWS provided metrics:
+  - Basic Monitoring: at 5 minutes interval
+  - Detailed Monitoring: at 1 minute interval
+  - Includes CPU, Network, Disk and Status Check 
+
+Custom metrics:
+  - Basic: 1 minute
+
+**RAM is NOT included in the AWS EC2 metrics**
+
+
+
+# Management of EC2 at scale: System Manager & OpsWork
