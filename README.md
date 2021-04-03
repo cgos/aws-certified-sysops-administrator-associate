@@ -139,3 +139,18 @@ Custom metrics:
 
 
 # Management of EC2 at scale: System Manager & OpsWork
+**Systems Manager**
+- Parameter Store
+- Run Command
+- Session Manager
+- Patch Manager
+
+# EC2 High Availability and Scalability
+**Load Balancers**
+- Troubleshooting
+- Advanced options and logging
+- CloudWatch integrations
+
+2 kinds of scalability:
+ - Vertical (increase instance size)
+ - Horizontal (elastic)
