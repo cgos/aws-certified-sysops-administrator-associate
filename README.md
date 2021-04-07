@@ -192,7 +192,7 @@ Unsuccessful at the client side: 4xx code:
  Unsuccessful at the server side: 5xx code:
   - 500: Internal server error: some error on the ELB itself
   - 502: Bad Gateway
-  - 503: Service Unavailable
+  - 503: Service Unavailable`
   - 504: Gateway timeout: issue within the server
   - 561: Unauthorized
 
@@ -233,3 +233,6 @@ How to support legavy browser with old TLS? change policy to suuport weaker ciph
 - Helpful for compliance
 - Helpful for keeping data after ELB or EC2 are terminated
 - Access Log are encrypted by default
+
+**ALB Request Tracing**
+- Request tracing through custom header: ```X-Amzn-Trace-Id```
