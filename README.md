@@ -1,3 +1,5 @@
+These are my notes from the [Ultimate AWS Certified SysOps Administrator Associate 2021](https://www.udemy.com/course/ultimate-aws-certified-sysops-administrator-associate/) course
+
 # EC2 for SysOps
  - Changing instance type
  - Placement groups
@@ -154,3 +156,66 @@ Custom metrics:
 2 kinds of scalability:
  - Vertical (increase instance size)
  - Horizontal (elastic)
+
+**Load Balancer Stickiness**
+- Works with classic and ALB
+- Uses cookies with an expiration date
+- Enabling stickiness may bring imbalance on traffic routing
+
+# Load Balancer SysOps
+ALB:
+  - Layer 7
+  - URL based routing
+  - No fix IP, but DNS
+  - Provide SSL termination
+  - Needs pre-warming (same for classic ELB): 
+    - ALB scale gradually to traffic
+    - ALB may fail in case of sudden spike
+    - Could open ticket to pre-warm ALB
+
+NLB:
+  - Layer 4
+  - No pre-warming
+  - 1 static IP per subnet
+  - No SSL termination
+
+Exam: How do you provide a fix IP to an ALB? Chain an NLB and a ALB to provide fix IP
+
+**Load Balancer Error Codes**
+Unsuccessful at the client side: 4xx code:
+  - 400: Bad Request
+  - 401: Unauthorized
+  - 403: Forbidden
+  - 460: client closed connection
+  - 463: X-Forwarded For header has more than 30 IP (malformed request)
+ 
+ Unsuccessful at the server side: 5xx code:
+  - 500: Internal server error: some error on the ELB itself
+  - 502: Bad Gateway
+  - 503: Service Unavailable
+  - 504: Gateway timeout: issue within the server
+  - 561: Unauthorized
+
+**Load Balancer SSL**
+How to support legavy browser with old TLS? change policy to suuport weaker cipher
+
+**Laod Balancer common troubleshooting**
+- Check Security Groups
+- Check Health Checks
+- Sticky sessions
+- For Multi-AZ, make sure cross zone balancing is enabled
+- Use Internal ELB for private app that don't need public access
+- Enable Deletion Protection to prevent deletion
+
+# Load Balancer Monitoring: Metric/Logging/Tracing
+**Load Balander CloudWatch metrics**
+- BackendConnectionErrors
+- HealthyHostCount/UnHealthyHostCount
+- HTTP_Code_Backend_2XX: Success
+- HTTP_Code_Backend_3XX: Redirected
+- HTTP_Code_Backend_4XX: Client error
+- HTTP_Code_Backend_5XX: Server error
+- Latency
+- RequestCount
+- SurgeQueueLength: Pending request, Max 1024
+- SpilloverCount: Number of rejected request because of surge queue is full
