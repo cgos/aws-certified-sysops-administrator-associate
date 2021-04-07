@@ -219,3 +219,17 @@ How to support legavy browser with old TLS? change policy to suuport weaker ciph
 - RequestCount
 - SurgeQueueLength: Pending request, Max 1024
 - SpilloverCount: Number of rejected request because of surge queue is full
+
+**Load Balancer Access Logs**
+- Logs are stored in S3
+- Logs contain:
+  - Time
+  - Client IP
+  - Latencies
+  - Request paths
+  - Server response
+  - Trace Id
+- Only pay for S3 storage
+- Helpful for compliance
+- Helpful for keeping data after ELB or EC2 are terminated
+- Access Log are encrypted by default
