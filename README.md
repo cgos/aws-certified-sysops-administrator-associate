@@ -236,3 +236,41 @@ How to support legavy browser with old TLS? change policy to suuport weaker ciph
 
 **ALB Request Tracing**
 - Request tracing through custom header: ```X-Amzn-Trace-Id```
+
+**Auto Scaling Group**
+Attributes:
+
+1. Launch Configuration
+  - AMI + instance type
+  - EC2 User Data
+  - EBS Volume
+  - Security Groups
+  - SSH Key Pair
+2. Min Size / Max Size / Initial Capacity
+3. Network + Subnet info
+4. Load Balancer info (target group)
+5. Scaling Policies (when to scale out/in)
+
+Auto Scaling Alarms
+- Possible to scale on CW alarms
+- Alarm can monitor metric
+- Metrics are computed for the overall ASG instances 
+- The following metrics are available for ASG:
+  - GroupMinSize
+  - GroupMaxSize
+  - GroupDesiredCapacity
+  - GroupInServiceInstances
+  - GroupPendingInstances
+  - GroupStandbyInstances
+  - GroupTerminatingInstances
+  - GroupTotalInstances
+
+Scaling Processes
+- Launch: add new EC2
+- Terminate: Remove EC2
+- HealthCheck
+- ReplaceUnhealthy: terminate unhealthy instances and re-create them
+- AZRebalance: Balance the number of ec2 instances across AZ
+- AlarmNotification: Accept notification from CW
+- ScheduledActions: Performs scheduled actions
+- AddToLoadBalancer: Adds instances to ELB or TG
