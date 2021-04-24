@@ -208,6 +208,7 @@ How to support legavy browser with old TLS? change policy to suuport weaker ciph
 - Enable Deletion Protection to prevent deletion
 
 # Load Balancer Monitoring: Metric/Logging/Tracing
+
 **Load Balander CloudWatch metrics**
 - BackendConnectionErrors
 - HealthyHostCount/UnHealthyHostCount
@@ -274,3 +275,34 @@ Scaling Processes
 - AlarmNotification: Accept notification from CW
 - ScheduledActions: Performs scheduled actions
 - AddToLoadBalancer: Adds instances to ELB or TG
+
+# Elastic Beastalk
+it using all those componenents: EC2, ASG, ELB, RDS
+
+Three architecture models:
+1. Singel instance deployment (dev)
+2. LB + ASG (web app prod)
+3. ASG only (non-web app prod, worker tier)
+
+Elastic Beanstalk has three components:
+1. Application
+2. Application Version
+3. Environment Name
+
+**Deployment Modes**
+- Single instance
+  - DNS --> EIP
+  - EC2, SG, ASG
+  - All in one AZ
+- High Availability with LB
+  - DNS --> ELB DNS name
+  - Span across different AZ
+
+ **For the exam**
+ - Beanstalk can put app logs in CW
+ - You manage the app, AWS manage the infra
+ - Know the different deployment modes
+ - Custom domain: Route 53 Alias or CNAME on top of Beanstalk URL
+ - You are not responsible for patching the runtimes
+
+ 
