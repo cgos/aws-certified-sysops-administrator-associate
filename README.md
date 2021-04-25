@@ -305,4 +305,19 @@ Elastic Beanstalk has three components:
  - Custom domain: Route 53 Alias or CNAME on top of Beanstalk URL
  - You are not responsible for patching the runtimes
 
- 
+# CloudFormation
+
+# EC2 Storage and Data Mgm
+EFS and EBS
+
+EBS:
+- Network drive you can attach to your instance while running
+- Can be detached and attached in the same AZ
+- To move EBS volume you need to create a snapshot
+
+EBS Volume Types:
+1. GP2 (SSD): General Purpose
+2. IO1 (SSD): Highest performance for low latency, high throughput
+3. ST1 (HDD): Low cost, frequently accessed throughput intensive workload
+4. SC11 (HDD): Lowest cost 
+
