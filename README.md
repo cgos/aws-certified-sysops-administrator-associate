@@ -317,7 +317,47 @@ EBS:
 
 EBS Volume Types:
 1. GP2 (SSD): General Purpose
+   - Sys boot vol, virtual desktop, low latency apps
+   - 1 GiB - 16 TiB
+   - IOPS 3000 / 16 000 
+   - **GP2 I/O Burst**:
+     - you accumulate "burst credit over time"
+     - 
 2. IO1 (SSD): Highest performance for low latency, high throughput
+   - sustained IOPS performance
+   - More than 16k IOPS
+   - Large DB workload
+   - 4 GiB - 16 TiB
+   - IOPS provisionned 100 - 32000 or 64000 (Nitro)
+   - Ratio of provisioned IOPS 50:1 between size and iops
 3. ST1 (HDD): Low cost, frequently accessed throughput intensive workload
+   - Big data, data warehouse, log processing
+   - Kafka
+   - Cannot be boot vol
+   - 500 GiB - 16 TiB
 4. SC11 (HDD): Lowest cost 
+   - low storage cost
+
+**EBS Computing Throughput**
+GP2:
+Throughput in MiB = (Volume size in GiB) x (IOPs per GiB) x (I/O size in KiB)
+
+**EBS Volume resizing**
+You can resize the volume and increase the IOPS without detaching from the EC2 instance
+
+**EBS Snapshots**
+- Incremental: only changed blocks
+- Stored in S3
+- EBS volume restored by snapshots need to be pre-warmed
+
+**Encrypt an unencrypted EBS volume** 
+1. Create an EBS snapshot
+2. Encrypt the snapshot
+3. Create new ebs volume from snapshot
+4. Attach encrypted volume to original instance
+
+**Difference between EBS and instance store**
+- Instance store is an ephemeral storage.
+- Instance store is physically attached to a machine
+- EBS is a network drive
 
